@@ -13,12 +13,15 @@ using namespace std;
 
 enum class element {
     fire = 0, water = 1, grass = 2, normal = 3, dragon = 4
->>>>>>> d5ce0ac15b86ee03f43283aebe028af000ee4dc2
 };
 
 struct PokeEntry{
-	std::string name;
 	int number;
+	char name[30];
+	char type[15];
+	char description[100];
+	PokeEntry() {};
+	PokeEntry(int n) {};
 };
 
 class Pokemon {
@@ -27,8 +30,8 @@ private:
 	int index;
 	int level = 1;
 	PokeEntry pokeEntry;
-protected:
 	
+protected:
 	int maxHP = 20;
 	int currentHP = maxHP;
 	int speed = 10;
@@ -37,11 +40,10 @@ protected:
 	int specialAttack = 10;
 	int specialDefense = 10;
 	std::list<element> weaknesses;
->>>>>>> d5ce0ac15b86ee03f43283aebe028af000ee4dc2
 
 public:
 	Pokemon() {};
-	Pokemon(int i) { index = i; }
+	Pokemon(int i) { index = i; pokeEntry.name = i; }
 	~Pokemon() {};
 	std::string get_name() {
 		return name;
@@ -59,14 +61,19 @@ public:
 	int take_damage(int damageAmount, std::list<element> damageTypes);
 	
 	friend Pokemon* make_pokemon(element type, std::string name);
+	
+	//Function set name
 	void set_name(string name) {
 		this->name = name;
 	}
 
+	//Function get species name from pokeEntry
 	string get_species() { 
 		return pokeEntry.name; 
 	}
 	int take_damage(int damageAmount, list<element> damageTypes);
+
+	//Abstraction function attack1 and attack2
 	virtual int attack1(Pokemon* pokePointer);
 	virtual int attack2(Pokemon* pokePointer);
 	
@@ -92,22 +99,33 @@ public:
 	Grass(int index);
 };
 
+//Class Squirtle is a child of Water class
 class Squirtle : public Water {
 public:
+	//Constructor
 	Squirtle(string speciesName);
+
+	//Virtual function attack2
 	virtual int attack2(Pokemon * pokePointer);
 };
 
+//Class Wartortle is a child of Water class
 class Wartortle : public Water {
 public:
+	//Constructor
 	Wartortle(string speciesName);
-	virtual int attack2(Pokemon * pokePointer);
 
+	//Virtual function attack2
+	virtual int attack2(Pokemon * pokePointer);
 };
 
+//Class Blastoise is a child of Water class
 class Blastoise : public Water {
 public:
+	//Constructor
 	Blastoise(string speciesName);
+
+	//Virtual function attack1 and attack2
 	virtual int attack2(Pokemon * pokePointer);
 	virtual int attack1(Pokemon * pokePointer);
 };

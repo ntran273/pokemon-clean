@@ -85,9 +85,69 @@ void Pokemon::write() {
 
 }
 
-int main() {
-	Pokemon a;
-	a.write();
+//Pokemon virtual function attack1 definition
+int Pokemon::attack1(Pokemon * pokePointer)
+{
+	return 0;
+}
 
+//Pokemon virtual function attack2 definition
+int Pokemon::attack2(Pokemon * pokePointer)
+{
+	return 0;
+}
+
+//Water virtual function attack1 definition
+int Water::attack1(Pokemon * pokePointer)
+{
+	cout << pokePointer->get_name() << " used Tackle" << pokePointer->get_species()
+		<< " took " << pokePointer->take_damage(2, list<element>({element::water})) << " Damage.";
+	return 0;
+}
+
+//Squirtle Constructor definition
+Squirtle::Squirtle(string speciesName = "Squirtle") : Water(7)
+{
+	this->set_name(speciesName);
+}
+
+//Squirtle virtual function attack2 definition
+int Squirtle::attack2(Pokemon * pokePointer)
+{
+	cout << pokePointer->get_name() << " used Tackle" << pokePointer->get_species()
+		<< " took " << pokePointer->take_damage(2, list<element>({element::water})) << " Damage.";
+	return 0;
+}
+
+//Wartortle Constructor definition
+Wartortle::Wartortle(string speciesName = "Wartortle") : Water(8)
+{
+	this->set_name(speciesName);
+}
+
+//Wartortle virtual function attack2 definition
+int Wartortle::attack2(Pokemon * pokePointer)
+{
+	cout << pokePointer->get_name() << " used Surf" << " took " << pokePointer->take_damage(4, list<element>({element::water})) << " Damage.";
+	return 0;
+}
+
+//Blastoise Constructor definition
+Blastoise::Blastoise(string speciesName = "Blastoise") : Water(9)
+{
+	this->set_name(speciesName);
+}
+
+//Blastoise virtual function attack2 definition
+int Blastoise::attack2(Pokemon * pokePointer)
+{	
+	cout << pokePointer->get_name() << " used Hydro Cannon" << " took " << pokePointer->take_damage(6, list<element> ({ element::water, element::dragon })) << " Damage.";
+	return 0;
+}
+
+//Blastoise virtual function attack1 definition
+int Blastoise::attack1(Pokemon * pokePointer)
+{
+	cout << pokePointer->get_name() << " used Water Pledge" << " took " << pokePointer->take_damage(8, list<element>({ element::water })) << " Damage.";
 	return 0;
 }
