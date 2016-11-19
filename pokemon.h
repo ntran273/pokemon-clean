@@ -3,11 +3,10 @@
 
 #include <iostream>
 #include <string>
-<<<<<<< HEAD
+#include <list>
 using namespace std;
 
-enum class element {
-	fire = 0, water = 1, grass = 2
+<<<<<<< HEAD
 =======
 #include <cmath>
 #include <list>
@@ -17,13 +16,17 @@ enum class element {
 >>>>>>> d5ce0ac15b86ee03f43283aebe028af000ee4dc2
 };
 
-
+struct PokeEntry{
+	std::string name;
+	int number;
+};
 
 class Pokemon {
 private:
-	std::string name = "Sparky";
-	int index = 14321;
+	std::string name;
+	int index;
 	int level = 1;
+	PokeEntry pokeEntry;
 protected:
 	
 	int maxHP = 20;
@@ -33,9 +36,6 @@ protected:
 	int defense = 10;
 	int specialAttack = 10;
 	int specialDefense = 10;
-<<<<<<< HEAD
-	
-=======
 	std::list<element> weaknesses;
 >>>>>>> d5ce0ac15b86ee03f43283aebe028af000ee4dc2
 
@@ -57,8 +57,18 @@ public:
 	}
 
 	int take_damage(int damageAmount, std::list<element> damageTypes);
-
+	
 	friend Pokemon* make_pokemon(element type, std::string name);
+	void set_name(string name) {
+		this->name = name;
+	}
+
+	string get_species() { 
+		return pokeEntry.name; 
+	}
+	int take_damage(int damageAmount, list<element> damageTypes);
+	virtual int attack1(Pokemon* pokePointer);
+	virtual int attack2(Pokemon* pokePointer);
 	
 	int get_index() { return index; }
 	int get_Attk() { return attack; }
@@ -81,5 +91,26 @@ class Grass : public Pokemon {
 public:
 	Grass(int index);
 };
+
+class Squirtle : public Water {
+public:
+	Squirtle(string speciesName);
+	virtual int attack2(Pokemon * pokePointer);
+};
+
+class Wartortle : public Water {
+public:
+	Wartortle(string speciesName);
+	virtual int attack2(Pokemon * pokePointer);
+
+};
+
+class Blastoise : public Water {
+public:
+	Blastoise(string speciesName);
+	virtual int attack2(Pokemon * pokePointer);
+	virtual int attack1(Pokemon * pokePointer);
+};
+
 
 #endif // POKEMON_H

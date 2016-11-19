@@ -6,22 +6,6 @@
 <<<<<<< HEAD
 using namespace std; 
 
-Fire::Fire(int index) : Pokemon(index) {
-	maxHP += 1; speed += 2;
-	attack += 2; defense -= 2;
-	specialAttack += 4; specialDefense += 1;
-}
-
-Water::Water(int index) : Pokemon(index) {
-	maxHP += 2; speed -= 1;
-	attack -= 2; defense += 2;
-	specialAttack -= 4; specialDefense -= 1;
-}
-
-Grass::Grass(int index) : Pokemon(index) {
-	maxHP -= 3; speed -= 2;
-	attack -= 2; defense += 0;
-	specialAttack -= 3; specialDefense += 0;
 =======
 Fire::Fire(int index) : Pokemon(index){
 	maxHP+=1; speed+=2;
@@ -82,12 +66,8 @@ ostream & operator<<(ostream &os, Pokemon poke)
 	os << "<attack> " << poke.get_Attk() << " </attack>" << endl;
 	os << "<defense> " << poke.get_Def() << " </defense>" << endl;
 	os << "<entry>" << endl;
-	
-	Pokemon *a;
-	element type = element::fire;
-	a = make_pokemon(type, "Charmander");
-	os << "\t<number> " << a->get_index() << " </number>" << endl;
-	os << "\t<name> " << a->get_name() << " </name>" << endl;
+	os << "\t<number> " << () << " </number>" << endl;
+	os << "\t<name> " << << " </name>" << endl;
 	os << "</entry>" << endl;
 
 	return os;
