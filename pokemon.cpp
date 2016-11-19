@@ -3,6 +3,7 @@
 #include <fstream>
 #include <string>
 
+<<<<<<< HEAD
 using namespace std; 
 
 Fire::Fire(int index) : Pokemon(index) {
@@ -21,7 +22,39 @@ Grass::Grass(int index) : Pokemon(index) {
 	maxHP -= 3; speed -= 2;
 	attack -= 2; defense += 0;
 	specialAttack -= 3; specialDefense += 0;
+=======
+Fire::Fire(int index) : Pokemon(index){
+	maxHP+=1; speed+=2;
+	attack+=2; defense-=2;
+	specialAttack+=4; specialDefense+=1;
+	weaknesses.push_back(element::water);
 }
+
+Water::Water(int index) : Pokemon(index){
+	maxHP+=2; speed-=1;
+	attack-=2; defense+=2;
+	specialAttack-=4; specialDefense-=1;
+	weaknesses.push_back(element::grass);
+}
+
+Grass::Grass(int index) : Pokemon(index){
+	maxHP-=3; speed-=2;
+	attack-=2; defense+=0;
+	specialAttack-=3; specialDefense+=0;
+	weaknesses.push_back(element::fire);
+>>>>>>> d5ce0ac15b86ee03f43283aebe028af000ee4dc2
+}
+
+int Pokemon::take_damage(int damageAmount, std::list<element> damageTypes) {
+	int weaknessCount = 0;
+	for(auto wIt = weaknesses.begin(); wIt != weaknesses.end(); wIt++)
+		for(auto dIt = damageTypes.begin(); dIt != damageTypes.end(); dIt++)
+			if(*dIt == *wIt) weaknessCount++;
+
+	damageAmount = damageAmount * (log(5 * weaknessCount + 5) / log(5));
+	currentHP -= damageAmount;
+	return damageAmount;
+};
 
 Pokemon *make_pokemon(element e, std::string n) {
 
