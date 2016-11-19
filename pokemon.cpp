@@ -66,8 +66,8 @@ ostream & operator<<(ostream &os, Pokemon poke)
 	os << "<attack> " << poke.get_Attk() << " </attack>" << endl;
 	os << "<defense> " << poke.get_Def() << " </defense>" << endl;
 	os << "<entry>" << endl;
-	os << "\t<number> " << () << " </number>" << endl;
-	os << "\t<name> " << << " </name>" << endl;
+	os << "\t<number> " << poke.pokeEntry.number << " </number>" << endl;
+	os << "\t<name> " << poke.pokeEntry.name << " </name>" << endl;
 	os << "</entry>" << endl;
 
 	return os;
@@ -139,15 +139,15 @@ Blastoise::Blastoise(string speciesName = "Blastoise") : Water(9)
 }
 
 //Blastoise virtual function attack2 definition
-int Blastoise::attack2(Pokemon * pokePointer)
+int Blastoise::attack1(Pokemon * pokePointer)
 {	
-	cout << pokePointer->get_name() << " used Hydro Cannon" << " took " << pokePointer->take_damage(6, list<element> ({ element::water, element::dragon })) << " Damage.";
+	cout << pokePointer->get_name() << " used Water Pledge" << " took " << pokePointer->take_damage(6, list<element> ({ element::water, element::dragon })) << " Damage.";
 	return 0;
 }
 
 //Blastoise virtual function attack1 definition
-int Blastoise::attack1(Pokemon * pokePointer)
+int Blastoise::attack2(Pokemon * pokePointer)
 {
-	cout << pokePointer->get_name() << " used Water Pledge" << " took " << pokePointer->take_damage(8, list<element>({ element::water })) << " Damage.";
+	cout << pokePointer->get_name() << " used Hydro Cannon" << " took " << pokePointer->take_damage(8, list<element>({ element::water })) << " Damage.";
 	return 0;
 }

@@ -29,7 +29,6 @@ private:
 	std::string name;
 	int index;
 	int level = 1;
-	PokeEntry pokeEntry;
 	
 protected:
 	int maxHP = 20;
@@ -40,10 +39,11 @@ protected:
 	int specialAttack = 10;
 	int specialDefense = 10;
 	std::list<element> weaknesses;
+	PokeEntry pokeEntry;
+
 
 public:
-	Pokemon() {};
-	Pokemon(int i) { index = i; pokeEntry.name = i; }
+	Pokemon(int i) { index = i; pokeEntry.number = i; }
 	~Pokemon() {};
 	std::string get_name() {
 		return name;
