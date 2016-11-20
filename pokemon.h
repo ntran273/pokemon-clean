@@ -4,32 +4,36 @@
 #include <iostream>
 #include <string>
 #include <list>
-using namespace std;
-
-<<<<<<< HEAD
-=======
 #include <cmath>
-#include <list>
+using namespace std;
 
 enum class element {
     fire = 0, water = 1, grass = 2, normal = 3, dragon = 4
 };
 
-struct PokeEntry{
+
+struct PokeEntry {
 	int number;
-	char name[30];
-	char type[15];
-	char description[100];
-	PokeEntry() {};
-	PokeEntry(int n) {};
+	char name[20];
+	char type[10];
+	char description[200];
+	PokeEntry(int n) {
+		std::ifstream entryFile(std::to_string(n) + ".txt");
+		entryFile >> number;
+		entryFile >> name;
+		entryFile >> type;
+		entryFile.seekg(1, std::ios::cur);
+		entryFile.getline(description, 199);
+		entryFile.close();
+	};
 };
 
 class Pokemon {
 private:
-	std::string name;
 	int index;
+	std::string name;
 	int level = 1;
-	
+public: PokeEntry *entry;
 protected:
 	int maxHP = 20;
 	int currentHP = maxHP;
@@ -39,11 +43,11 @@ protected:
 	int specialAttack = 10;
 	int specialDefense = 10;
 	std::list<element> weaknesses;
-	PokeEntry pokeEntry;
-
 
 public:
-	Pokemon(int i) { index = i; pokeEntry.number = i; }
+	Pokemon(int i) {
+		entry = new PokeEntry(i);
+	}
 	~Pokemon() {};
 	std::string get_name() {
 		return name;
@@ -60,7 +64,7 @@ public:
 
 	int take_damage(int damageAmount, std::list<element> damageTypes);
 	
-	friend Pokemon* make_pokemon(element type, std::string name);
+	friend Pokemon make_pokemon(int index);
 	
 	//Function set name
 	void set_name(string name) {
@@ -69,9 +73,8 @@ public:
 
 	//Function get species name from pokeEntry
 	string get_species() { 
-		return pokeEntry.name; 
+		return entry->name; 
 	}
-	int take_damage(int damageAmount, list<element> damageTypes);
 
 	//Abstraction function attack1 and attack2
 	virtual int attack1(Pokemon* pokePointer);
@@ -92,6 +95,7 @@ public:
 class Water : public Pokemon {
 public:
 	Water(int index);
+	virtual int attack1(Pokemon * pokePointer);
 };
 
 class Grass : public Pokemon {
@@ -103,7 +107,7 @@ public:
 class Squirtle : public Water {
 public:
 	//Constructor
-	Squirtle(string speciesName);
+	Squirtle(string );
 
 	//Virtual function attack2
 	virtual int attack2(Pokemon * pokePointer);
@@ -113,7 +117,7 @@ public:
 class Wartortle : public Water {
 public:
 	//Constructor
-	Wartortle(string speciesName);
+	Wartortle(string );
 
 	//Virtual function attack2
 	virtual int attack2(Pokemon * pokePointer);
@@ -123,7 +127,7 @@ public:
 class Blastoise : public Water {
 public:
 	//Constructor
-	Blastoise(string speciesName);
+	Blastoise(string );
 
 	//Virtual function attack1 and attack2
 	virtual int attack2(Pokemon * pokePointer);
