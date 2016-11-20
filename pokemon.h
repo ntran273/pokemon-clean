@@ -5,6 +5,8 @@
 #include <string>
 #include <list>
 #include <cmath>
+#include <fstream>
+
 using namespace std;
 
 enum class element {
@@ -107,7 +109,9 @@ public:
 class Squirtle : public Water {
 public:
 	//Constructor
-	Squirtle(string );
+	Squirtle(string nickname = "Squirtle") : Water(7){
+		this->set_name(nickname);
+	}
 
 	//Virtual function attack2
 	virtual int attack2(Pokemon * pokePointer);
@@ -117,8 +121,10 @@ public:
 class Wartortle : public Water {
 public:
 	//Constructor
-	Wartortle(string );
-
+	Wartortle(string nickname = "Wartortle") : Water(8){
+		this->set_name(nickname);
+	}
+	
 	//Virtual function attack2
 	virtual int attack2(Pokemon * pokePointer);
 };
@@ -127,7 +133,9 @@ public:
 class Blastoise : public Water {
 public:
 	//Constructor
-	Blastoise(string );
+	Blastoise(string nickname = "Blastoise") : Water(9){
+		this->set_name(nickname);
+	}
 
 	//Virtual function attack1 and attack2
 	virtual int attack2(Pokemon * pokePointer);
