@@ -52,15 +52,15 @@ Pokemon makePokemon(int index) {
 */
 
 /*
-ostream & operator<<(ostream &os, Pokemon poke)
+ostream & operator<<(ostream &os, pokemon poke)
 {
 	os << "<id> " << poke.get_index() << "</id>" << endl;
 	os << "<name> " << poke.get_name() << " </name>" << endl;
-	os << "<attack> " << poke.get_Attk() << " </attack>" << endl;
-	os << "<defense> " << poke.get_Def() << " </defense>" << endl;
+	os << "<attack> " << poke.get_attk() << " </attack>" << endl;
+	os << "<defense> " << poke.get_def() << " </defense>" << endl;
 	os << "<entry>" << endl;
-	os << "\t<number> " << poke.pokeEntry.number << " </number>" << endl;
-	os << "\t<name> " << poke.pokeEntry.name << " </name>" << endl;
+	os << "\t<number> " << poke.entry->number << " </number>" << endl;
+	os << "\t<name> " << poke.entry->name << " </name>" << endl;
 	os << "</entry>" << endl;
 
 	return os;
@@ -96,44 +96,57 @@ int Pokemon::attack2(Pokemon * pokePointer)
 //Water virtual function attack1 definition
 int Water::attack1(Pokemon * pokePointer)
 {
-	cout << pokePointer->get_name() << " used Tackle" << pokePointer->get_species()
-		<< " took " << pokePointer->take_damage(2, list<element>({element::water})) << " Damage.";
+	cout << get_name() << " used Tackle. " << pokePointer->get_species()
+		<< " took " << pokePointer->take_damage(2, list<element>({element::water})) << " Damage." << endl;
 	return 0;
 }
 
 //Squirtle virtual function attack2 definition
 int Squirtle::attack2(Pokemon * pokePointer)
 {
-	cout << pokePointer->get_name() << " used Tackle. " << pokePointer->get_species()
-		<< " took " << pokePointer->take_damage(2, list<element>({element::water})) << " Damage.";
+	cout << get_name() << " used Tackle. " << pokePointer->get_species()
+		<< " took " << pokePointer->take_damage(2, list<element>({element::water})) << " Damage." << endl;
 	return 0;
 }
 
 //Wartortle virtual function attack2 definition
 int Wartortle::attack2(Pokemon * pokePointer)
 {
-	cout << pokePointer->get_name() << " used Surf. " << pokePointer->get_species() << " took " << pokePointer->take_damage(4, list<element>({element::water})) << " Damage.";
+	cout << get_name() << " used Surf. " << pokePointer->get_species() << " took " << pokePointer->take_damage(4, list<element>({element::water})) << " Damage." << endl;
 	return 0;
 }
 
 //Blastoise virtual function attack2 definition
 int Blastoise::attack1(Pokemon * pokePointer)
 {	
-	cout << pokePointer->get_name() << " used Water Pledge. " << pokePointer->get_species() << " took " << pokePointer->take_damage(6, list<element> ({ element::water, element::dragon })) << " Damage.";
+	cout << get_name() << " used Water Pledge. " << pokePointer->get_species() << " took " << pokePointer->take_damage(6, list<element> ({ element::water, element::dragon })) << " Damage." << endl;
 	return 0;
 }
 
 //Blastoise virtual function attack1 definition
 int Blastoise::attack2(Pokemon * pokePointer)
 {
-	cout << pokePointer->get_name() << " used Hydro Cannon. " << pokePointer->get_species() << " took " << pokePointer->take_damage(8, list<element>({ element::water })) << " Damage.";
+	cout << get_name() << " used Hydro Cannon. " << pokePointer->get_species() << " took " << pokePointer->take_damage(8, list<element>({ element::water })) << " Damage." << endl;
 	return 0;
 }
 
 int main(){
-	Pokemon *a = new Wartortle("Charlie");
-	Squirtle b("Life");
+	Wartortle b("GaoRanger");
+	Pokemon *a = new Blastoise();
 	b.attack2(a);
+
+	Squirtle c("Superman");
+	Pokemon *d = new Wartortle();
+	c.attack2(d);
+
+	Blastoise e("BigGuy");
+	Pokemon *f = new Squirtle();
+	e.attack1(f);
+	e.attack2(f);
+
+	Water g("BigWater");
+	Pokemon *h = new Blastoise();
+	g.attack1(h);
 
 	return 0;
 }

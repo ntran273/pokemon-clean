@@ -94,9 +94,16 @@ public:
 	Fire(int index);
 };
 
-class Water : public Pokemon {
+class Water : public Pokemon {	
+private: string name;
 public:
 	Water(int index);
+
+	Water(string nickname = "Water") : Pokemon(4){
+		name = nickname;
+	}
+
+	string get_name() {return name;}
 	virtual int attack1(Pokemon * pokePointer);
 };
 
@@ -107,11 +114,14 @@ public:
 
 //Class Squirtle is a child of Water class
 class Squirtle : public Water {
+private: string name;
 public:
 	//Constructor
 	Squirtle(string nickname = "Squirtle") : Water(7){
-		this->set_name(nickname);
+		name = nickname;
 	}
+
+	string get_name() {return name;}
 
 	//Virtual function attack2
 	virtual int attack2(Pokemon * pokePointer);
@@ -119,23 +129,29 @@ public:
 
 //Class Wartortle is a child of Water class
 class Wartortle : public Water {
+private: string name;
 public:
 	//Constructor
 	Wartortle(string nickname = "Wartortle") : Water(8){
-		this->set_name(nickname);
+		name = nickname;
 	}
 	
+	string get_name() {return name;}
+
 	//Virtual function attack2
 	virtual int attack2(Pokemon * pokePointer);
 };
 
 //Class Blastoise is a child of Water class
 class Blastoise : public Water {
+private: string name;
 public:
 	//Constructor
 	Blastoise(string nickname = "Blastoise") : Water(9){
-		this->set_name(nickname);
+		name = nickname;
 	}
+
+	string get_name() {return name;}
 
 	//Virtual function attack1 and attack2
 	virtual int attack2(Pokemon * pokePointer);
